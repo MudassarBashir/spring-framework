@@ -7,7 +7,7 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		ApplicationContext context = new FileSystemXmlApplicationContext("C:\\Users\\mbashir\\Documents\\Courses\\Spring-Framework_John-Purcell_CaveOfProgramming\\spring-framework\\src\\main\\java\\com\\caveofprogramming\\spring\\test\\com\\caveofprogramming\\spring\\test\\beans\\beans.xml");
+		ApplicationContext context = new FileSystemXmlApplicationContext("src\\main\\java\\com\\caveofprogramming\\spring\\test\\com\\caveofprogramming\\spring\\test\\beans\\beans.xml");
 		
 		Person person = (Person)context.getBean("person");
 		person.speak();
