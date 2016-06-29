@@ -12,5 +12,12 @@ an instance of Spring's ApplicationContext is created and passed the XML file wh
 beans a particular application has or wants to work with and how they are dependent on or wired with each other. When you need an instance of a 
 particular bean you don't use the 'new' operator to instantiate is yourself, you ask the Spring ApplicationContext instance for it.
 
+01.06 
+ClassPathXMLApplicationContext
+Using ClassPathXMLApplicationContext. Note, this did not work for me as it does by default in Eclipse. 
+I had to change a line in an IDEA configuration file according to the second answer on this page:
+http://stackoverflow.com/questions/31076576/xml-files-are-not-copied-to-target-intellij-idea
 
+I put in a no arg constructor for Person just to see what effect it has.
+It does log it's message which means it gets called from Spring.
 
