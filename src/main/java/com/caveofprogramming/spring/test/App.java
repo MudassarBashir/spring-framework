@@ -8,10 +8,11 @@ public class App {
 	public static void main(String[] args) {
 		
 		ApplicationContext context =
-                new ClassPathXmlApplicationContext("com/caveofprogramming/spring/test/beans/beans.xml");
+                new ClassPathXmlApplicationContext("beans.xml");
 		
 		Person person = (Person)context.getBean("person");
 		person.speak();
+		System.out.println(person);
 
         /**
          * Some IDEs, Eclipse in particular, generate an annoying warning when the application context isn't closed.
