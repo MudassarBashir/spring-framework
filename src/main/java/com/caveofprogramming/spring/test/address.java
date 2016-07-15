@@ -16,6 +16,15 @@ public class Address {
         this.zipCode = zipCode;
     }
 
+    public void init() {
+       System.out.println("Bean created: " + this);
+    }
+
+    public void destroy() {
+        System.out.println("Bean destroyed: " + this);
+    }
+
+
     @Override
     public String toString() {
         return "Address{" +
