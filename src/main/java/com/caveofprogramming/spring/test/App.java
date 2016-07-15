@@ -20,7 +20,7 @@ public class App {
          * Here is what it looks like when we do close it. Notice that the close() method belongs to
          * FileSystemXmlApplicationContext and not ApplicationContext, hence the casting is needed.
          */
-		((ClassPathXmlApplicationContext) context).close();
+		//((ClassPathXmlApplicationContext) context).close();
 	}
 
 }
