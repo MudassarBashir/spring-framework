@@ -9,11 +9,12 @@
 		<property name="taxId">
 			<value>123</value>
 		</property>
+        <property name="address" ref="address"/>
 	</bean>
 
 	<bean id="address" class="com.caveofprogramming.spring.test.Address">
-		<constructor-arg name="street" value="1 Church Lane"></constructor-arg>
-		<constructor-arg name="zipCode" value="90210"></constructor-arg>
+		<constructor-arg name="street" value="1 Church Lane"/>
+		<constructor-arg name="zipCode" value="90210"/>
 	</bean>
 
 </beans>

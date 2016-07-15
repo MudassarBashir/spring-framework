@@ -20,6 +20,10 @@ public class Person {
 		this.taxId = taxId;
 	}
 
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	public void speak() {
 		System.out.println("Hello! I'm a person.");
 	}
