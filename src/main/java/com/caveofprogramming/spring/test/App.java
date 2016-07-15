@@ -14,12 +14,6 @@ public class App {
 		Person person2 = (Person)context.getBean("person");
 
 		System.out.println(person1);
-		System.out.println(person2);
-
-		person1.setTaxId(666);
-
-		System.out.println(person1);
-		System.out.println(person2);
 
         /**
          * Some IDEs, Eclipse in particular, generate an annoying warning when the application context isn't closed.
