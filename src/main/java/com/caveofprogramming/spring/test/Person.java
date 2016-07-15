@@ -24,6 +24,10 @@ public class Person {
 		this.address = address;
 	}
 
+	public void onCreate() {
+		System.out.println("Person created: " + this);
+	}
+
 	public void speak() {
 		System.out.println("Hello! I'm a person.");
 	}
