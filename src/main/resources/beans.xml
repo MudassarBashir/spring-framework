@@ -6,7 +6,9 @@
 	<bean id="person" class="com.caveofprogramming.spring.test.Person">
 		<constructor-arg value="Mary" name="name"/>
 		<constructor-arg value="777" name="id"/>
-		<property name="taxId" value="123"></property>
+		<property name="taxId">
+			<value>123</value>
+		</property>
 	</bean>
 
 </beans>
