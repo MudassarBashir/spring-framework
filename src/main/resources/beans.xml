@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="person" class="com.caveofprogramming.spring.test.Person"
-          scope="singleton" init-method="onCreate" destroy-method="onDestroy">
+          scope="prototype" init-method="onCreate" destroy-method="onDestroy">
 		<constructor-arg value="Mary" name="name"/>
 		<constructor-arg value="777" name="id"/>
 		<property name="taxId">
