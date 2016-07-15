@@ -4,6 +4,7 @@ public class Person {
 
 	private int id;
 	private String name;
+	private int taxId;
 
 	public Person() {
 	}
@@ -11,6 +12,10 @@ public class Person {
 	public Person(String name, int id) {
 		this.name = name;
 		this.id = id;
+	}
+
+	public void setTaxId(int taxId) {
+		this.taxId = taxId;
 	}
 
 	public void speak() {
@@ -22,6 +27,7 @@ public class Person {
 		return "Person{" +
 				"id=" + id +
 				", name='" + name + '\'' +
+				", taxId=" + taxId +
 				'}';
 	}
 }

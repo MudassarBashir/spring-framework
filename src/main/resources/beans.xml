@@ -3,10 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
 	<bean id="person" class="com.caveofprogramming.spring.test.Person">
 		<constructor-arg value="Mary" name="name"/>
 		<constructor-arg value="777" name="id"/>
+		<property name="taxId" value="123"></property>
 	</bean>
 
 </beans>
