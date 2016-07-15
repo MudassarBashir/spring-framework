@@ -6,6 +6,8 @@ public class Person {
 	private String name;
 	private int taxId;
 
+	private Address address;
+
 	public Person() {
 	}
 
@@ -28,6 +30,7 @@ public class Person {
 				"id=" + id +
 				", name='" + name + '\'' +
 				", taxId=" + taxId +
+				", address=" + address +
 				'}';
 	}
 }

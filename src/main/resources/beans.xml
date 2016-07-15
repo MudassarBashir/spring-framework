@@ -11,4 +11,9 @@
 		</property>
 	</bean>
 
+	<bean id="address" class="com.caveofprogramming.spring.test.Address">
+		<constructor-arg name="street" value="1 Church Lane"></constructor-arg>
+		<constructor-arg name="zipCode" value="90210"></constructor-arg>
+	</bean>
+
 </beans>
