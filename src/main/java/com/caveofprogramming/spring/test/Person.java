@@ -11,7 +11,12 @@ public class Person {
 	public Person() {
 	}
 
-	public Person(String name, int id) {
+	public static Person getInstance(int id, String name) {
+		System.out.println("Creating person using factory method.");
+		return new Person(id, name);
+	}
+
+	public Person(int id, String name) {
 		this.name = name;
 		this.id = id;
 	}

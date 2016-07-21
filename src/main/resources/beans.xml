@@ -5,9 +5,9 @@
     default-init-method="init" default-destroy-method="destroy">
 
 	<bean id="person" class="com.caveofprogramming.spring.test.Person"
-          init-method="onCreate" destroy-method="onDestroy">
-		<constructor-arg value="Mary" name="name"/>
-		<constructor-arg value="777" name="id"/>
+          init-method="onCreate" destroy-method="onDestroy" factory-method="getInstance">
+		<constructor-arg value="777" name="id" type="int"/>
+		<constructor-arg value="Mary" name="name" type="java.lang.String"/>
 		<property name="taxId">
 			<value>123</value>
 		</property>
