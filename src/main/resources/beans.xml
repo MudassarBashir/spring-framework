@@ -14,6 +14,20 @@
         <property name="address" ref="address"/>
 	</bean>
 
+	<bean id="person2" class="com.caveofprogramming.spring.test.Person"
+		  init-method="onCreate" destroy-method="onDestroy" factory-bean="personFactory" factory-method="createPerson">
+		<constructor-arg value="654" name="id" type="int"/>
+		<constructor-arg value="Mike" name="name" type="java.lang.String"/>
+		<property name="taxId">
+			<value>123</value>
+		</property>
+		<property name="address" ref="address"/>
+	</bean>
+
+	<bean id="personFactory" class="com.caveofprogramming.spring.test.PersonFactory"/>
+
+
+
 	<bean id="address" class="com.caveofprogramming.spring.test.Address">
 		<constructor-arg name="street" value="1 Church Lane"/>
 		<constructor-arg name="zipCode" value="90210"/>
