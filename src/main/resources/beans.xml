@@ -22,7 +22,19 @@
 
 	<bean id="address2" class="com.caveofprogramming.spring.test.Address"
 			p:street="1234 P Street" p:zipCode="61801">
-
 	</bean>
+
+    <bean id="fruit-basket" class="com.caveofprogramming.spring.test.FruitBasket">
+        <constructor-arg value="John's basket"/>
+        <constructor-arg>
+            <list>
+                <value>banana</value>
+                <value>apple</value>
+                <value>orange</value>
+                <value>pear</value>
+                <value>pear</value>
+            </list>
+        </constructor-arg>
+    </bean>
 
 </beans>

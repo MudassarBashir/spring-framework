@@ -10,12 +10,8 @@ public class App {
 		ApplicationContext context =
                 new ClassPathXmlApplicationContext("beans.xml");
 		
-		Person person = (Person)context.getBean("person");
-		person.setTaxId(666);
-		System.out.println(person);
-
-		Address address2 = (Address)context.getBean("address2");
-		System.out.println(address2);
+		FruitBasket fruitBasket = (FruitBasket) context.getBean("fruit-basket");
+		System.out.println(fruitBasket);
 
         /**
          * Some IDEs, Eclipse in particular, generate an annoying warning when the application context isn't closed.
