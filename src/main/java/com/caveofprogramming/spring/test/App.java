@@ -14,6 +14,9 @@ public class App {
 		person.setTaxId(666);
 		System.out.println(person);
 
+		Address address2 = (Address)context.getBean("address2");
+		System.out.println(address2);
+
         /**
          * Some IDEs, Eclipse in particular, generate an annoying warning when the application context isn't closed.
          * Here is what it looks like when we do close it. Notice that the close() method belongs to

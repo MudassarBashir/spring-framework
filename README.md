@@ -21,3 +21,9 @@ http://stackoverflow.com/questions/31076576/xml-files-are-not-copied-to-target-i
 I put in a no arg constructor for Person just to see what effect it has.
 It does log it's message which means it gets called from Spring.
 
+02.13 P namespaces
+The p name space allows us to use a more succinct syntax to declare 
+bean property settings. The corresponding properties must have setters
+declared in Java.
+
+

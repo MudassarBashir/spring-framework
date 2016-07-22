@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-    default-init-method="init" default-destroy-method="destroy">
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   	xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="person" class="com.caveofprogramming.spring.test.Person"
-          init-method="onCreate" destroy-method="onDestroy" factory-method="getInstance">
+	<bean id="person" class="com.caveofprogramming.spring.test.Person">
 		<constructor-arg value="777" name="id" type="int"/>
 		<constructor-arg value="Mary" name="name" type="java.lang.String"/>
 		<property name="taxId">
@@ -14,23 +13,16 @@
         <property name="address" ref="address"/>
 	</bean>
 
-	<bean id="person2" class="com.caveofprogramming.spring.test.Person"
-		  init-method="onCreate" destroy-method="onDestroy" factory-bean="personFactory" factory-method="createPerson">
-		<constructor-arg value="654" name="id" type="int"/>
-		<constructor-arg value="Mike" name="name" type="java.lang.String"/>
-		<property name="taxId">
-			<value>123</value>
-		</property>
-		<property name="address" ref="address"/>
-	</bean>
-
 	<bean id="personFactory" class="com.caveofprogramming.spring.test.PersonFactory"/>
-
-
 
 	<bean id="address" class="com.caveofprogramming.spring.test.Address">
 		<constructor-arg name="street" value="1 Church Lane"/>
 		<constructor-arg name="zipCode" value="90210"/>
+	</bean>
+
+	<bean id="address2" class="com.caveofprogramming.spring.test.Address"
+			p:street="1234 P Street" p:zipCode="61801">
+
 	</bean>
 
 </beans>
