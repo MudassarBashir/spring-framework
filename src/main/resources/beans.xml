@@ -27,13 +27,13 @@
     <bean id="fruit-basket" class="com.caveofprogramming.spring.test.FruitBasket">
         <constructor-arg value="John's basket"/>
         <constructor-arg>
-            <list>
+            <set>
                 <value>banana</value>
                 <value>apple</value>
                 <value>orange</value>
                 <value>pear</value>
                 <value>pear</value>
-            </list>
+            </set>
         </constructor-arg>
     </bean>
 
