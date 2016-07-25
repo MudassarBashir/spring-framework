@@ -4,37 +4,30 @@
 	   	xmlns:p="http://www.springframework.org/schema/p"
 		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="person" class="com.caveofprogramming.spring.test.Person">
-		<constructor-arg value="777" name="id" type="int"/>
-		<constructor-arg value="Mary" name="name" type="java.lang.String"/>
-		<property name="taxId">
-			<value>123</value>
-		</property>
-        <property name="address" ref="address"/>
-	</bean>
+    <bean id="jungle" class="com.caveofprogramming.spring.test.Jungle">
+        <property name="largest" ref="elephant"></property>
+        <property name="animals">
+            <list>
+                <ref bean="snake"/>
+                <ref bean="elephant" />
+                <ref bean="lion" />
+            </list>
+        </property>
+    </bean>
 
-	<bean id="personFactory" class="com.caveofprogramming.spring.test.PersonFactory"/>
+    <bean id="lion" class="com.caveofprogramming.spring.test.Animal">
+        <property name="name" value="Igor"></property>
+        <property name="type" value="lion"></property>
+    </bean>
 
-	<bean id="address" class="com.caveofprogramming.spring.test.Address">
-		<constructor-arg name="street" value="1 Church Lane"/>
-		<constructor-arg name="zipCode" value="90210"/>
-	</bean>
+    <bean id="elephant" class="com.caveofprogramming.spring.test.Animal">
+        <property name="name" value="Richard"></property>
+        <property name="type" value="elephant"></property>
+    </bean>
 
-	<bean id="address2" class="com.caveofprogramming.spring.test.Address"
-			p:street="1234 P Street" p:zipCode="61801">
-	</bean>
-
-    <bean id="fruit-basket" class="com.caveofprogramming.spring.test.FruitBasket">
-        <constructor-arg value="John's basket"/>
-        <constructor-arg>
-            <set>
-                <value>banana</value>
-                <value>apple</value>
-                <value>orange</value>
-                <value>pear</value>
-                <value>pear</value>
-            </set>
-        </constructor-arg>
+    <bean id="snake" class="com.caveofprogramming.spring.test.Animal">
+        <property name="name" value="Bob"></property>
+        <property name="type" value="snake"></property>
     </bean>
 
 </beans>
