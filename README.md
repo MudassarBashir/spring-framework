@@ -26,4 +26,7 @@ The p name space allows us to use a more succinct syntax to declare
 bean property settings. The corresponding properties must have setters
 declared in Java.
 
+02.16 An inner bean is appropriate when it will only be needed by it's
+parent bean since it cannot be referenced outside that scope.
+
 
