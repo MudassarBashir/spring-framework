@@ -15,10 +15,6 @@
 	<bean id="consolewriter" class="com.caveofprogramming.spring.test.ConsoleWriter">
 	</bean>
 
-	<bean id="consolewriter2" class="com.caveofprogramming.spring.test.ConsoleWriter"
-		autowire-candidate="false">
-	</bean>
-
 	<bean id="filewriter" class="com.caveofprogramming.spring.test.FileWriter">
 	</bean>
 	
