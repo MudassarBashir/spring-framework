@@ -7,18 +7,14 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		ApplicationContext context =
-                new ClassPathXmlApplicationContext("beans.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		
-		Jungle jungle = (Jungle) context.getBean("jungle");
-		System.out.println(jungle);
-
-        /**
-         * Some IDEs, Eclipse in particular, generate an annoying warning when the application context isn't closed.
-         * Here is what it looks like when we do close it. Notice that the close() method belongs to
-         * FileSystemXmlApplicationContext and not ApplicationContext, hence the casting is needed.
-         */
-		((ClassPathXmlApplicationContext) context).close();
+		Logger logger = (Logger)context.getBean("logger");
+		
+		logger.writeConsole("Hello there");
+		logger.writeFile("Hi again");
+		
+		((ClassPathXmlApplicationContext)context).close();
 	}
 
 }
