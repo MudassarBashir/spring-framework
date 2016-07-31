@@ -10,12 +10,12 @@ public class Logger {
 
 
 	private ConsoleWriter consoleWriter;
-	private FileWriter fileWriter;
+	@Autowired
+    private FileWriter fileWriter;
 
     @Autowired
-    public Logger(ConsoleWriter consoleWriter, FileWriter fileWriter) {
+    public Logger(ConsoleWriter consoleWriter) {
         this.consoleWriter = consoleWriter;
-        this.fileWriter = fileWriter;
     }
 
     public void setConsoleWriter(ConsoleWriter writer) {
