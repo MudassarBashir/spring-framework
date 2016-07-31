@@ -9,7 +9,16 @@
 
     </bean>
 
-   <bean id="fileWriter"
+    <bean id="consoleWriter"
+          class="com.caveofprogramming.spring.test.ConsoleWriter">
+        <qualifier value="notTheSquirrel"></qualifier>
+    </bean>
+
+    <bean id="squirrel"
+          class="com.caveofprogramming.spring.test.ConsoleWriter">
+    </bean>
+
+    <bean id="fileWriter"
           class="com.caveofprogramming.spring.test.FileWriter">
     </bean>
 

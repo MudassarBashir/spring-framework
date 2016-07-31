@@ -5,15 +5,25 @@ package com.caveofprogramming.spring.test;
  */
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class Logger {
 
-    @Autowired(required = false)
-	private ConsoleWriter consoleWriter;
-	@Autowired
+    private ConsoleWriter consoleWriter;
     private FileWriter fileWriter;
-	
-	public void writeFile(String text) {
+
+    @Autowired
+    @Qualifier("notTheSquirrel")
+    public void setConsoleWriter(ConsoleWriter consoleWriter) {
+        this.consoleWriter = consoleWriter;
+    }
+
+    @Autowired
+    public void setFileWriter(FileWriter fileWriter) {
+        this.fileWriter = fileWriter;
+    }
+
+    public void writeFile(String text) {
 		fileWriter.write(text);
 	}
 	
