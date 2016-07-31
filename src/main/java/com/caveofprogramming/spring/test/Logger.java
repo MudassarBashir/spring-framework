@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 public class Logger {
 
     private ConsoleWriter consoleWriter;
-    private FileWriter fileWriter;
+    private LogWriter fileWriter;
 
     @Autowired
     @Qualifier("notTheSquirrel")
@@ -19,7 +19,8 @@ public class Logger {
     }
 
     @Autowired
-    public void setFileWriter(FileWriter fileWriter) {
+    @Qualifier("fileWriter")
+    public void setFileWriter(LogWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
 
