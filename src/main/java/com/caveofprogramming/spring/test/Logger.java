@@ -6,11 +6,11 @@ package com.caveofprogramming.spring.test;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import javax.inject.Inject;
 
 public class Logger {
 
-    @Resource
+    @Inject
     private ConsoleWriter consoleWriter;
     private LogWriter fileWriter;
 
@@ -19,7 +19,7 @@ public class Logger {
         this.consoleWriter = consoleWriter;
     }
 
-    @Resource (name="squirrel")
+    @Inject
     public void setFileWriter(LogWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
