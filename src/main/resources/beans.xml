@@ -15,7 +15,7 @@
     </bean>
 
     <bean id="squirrel"
-          class="com.caveofprogramming.spring.test.ConsoleWriter">
+          class="com.caveofprogramming.spring.test.FileWriter">
     </bean>
 
     <bean id="fileWriter"
