@@ -7,6 +7,7 @@ package com.caveofprogramming.spring.test;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class Logger {
 
@@ -20,6 +21,7 @@ public class Logger {
     }
 
     @Inject
+    @Named(value = "squirrel")
     public void setFileWriter(LogWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
