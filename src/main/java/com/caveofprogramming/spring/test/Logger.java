@@ -17,7 +17,7 @@ public class Logger {
         this.consoleWriter = consoleWriter;
     }
 
-    @Resource
+    @Resource (name="squirrel")
     public void setFileWriter(LogWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
