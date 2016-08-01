@@ -4,22 +4,20 @@ package com.caveofprogramming.spring.test;
  * Dummy implementation of logger.
  */
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import javax.annotation.Resource;
 
 public class Logger {
 
+    @Resource
     private ConsoleWriter consoleWriter;
     private LogWriter fileWriter;
 
-    @Autowired
-    @Qualifier("notTheSquirrel")
+
     public void setConsoleWriter(ConsoleWriter consoleWriter) {
         this.consoleWriter = consoleWriter;
     }
 
-    @Autowired
-    @Qualifier("fileWriter")
+    @Resource
     public void setFileWriter(LogWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
