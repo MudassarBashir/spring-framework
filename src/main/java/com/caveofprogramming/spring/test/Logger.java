@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 @Component
 public class Logger {
@@ -23,6 +24,7 @@ public class Logger {
     }
 
     @Inject
+    @Named(value = "fileWriter")
     public void setFileWriter(LogWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
