@@ -24,7 +24,7 @@ public class Logger {
     }
 
     @Inject
-    @Named(value = "fileWriter")
+    @Named(value = "fileWriterd")
     public void setFileWriter(LogWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
