@@ -4,11 +4,13 @@ package com.caveofprogramming.spring.test;
  * Dummy implementation of logger.
  */
 
+import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
-import javax.inject.Named;
 
+@Component
 public class Logger {
 
     @Inject
@@ -21,7 +23,6 @@ public class Logger {
     }
 
     @Inject
-    @Named(value = "squirrel")
     public void setFileWriter(LogWriter fileWriter) {
         this.fileWriter = fileWriter;
     }

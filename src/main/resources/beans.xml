@@ -5,22 +5,9 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="logger" class="com.caveofprogramming.spring.test.Logger">
+    <!-- Automatic bean discovery -->
+    <context:component-scan base-package="com.caveofprogramming.spring.test"/>
 
-    </bean>
+    <context:annotation-config/>
 
-    <bean id="consoleWriter"
-          class="com.caveofprogramming.spring.test.ConsoleWriter">
-        <qualifier value="notTheSquirrel"></qualifier>
-    </bean>
-
-    <bean id="squirrel"
-          class="com.caveofprogramming.spring.test.FileWriter">
-    </bean>
-
-    <bean id="fileWriter"
-          class="com.caveofprogramming.spring.test.FileWriter">
-    </bean>
-
-    <context:annotation-config></context:annotation-config>
 </beans>
