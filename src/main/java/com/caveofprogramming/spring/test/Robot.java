@@ -15,12 +15,12 @@ public class Robot {
 		System.out.println(id + ": " + speech);
 	}
     @Autowired
-	public void setId(@Value("#{randomText.getText().length()}") String id) {
+	public void setId(@Value("#{randomText.getText()?.length()}") String id) {
 		this.id = id;
 	}
 
 	@Autowired
-	public void setSpeech(@Value("#{T(Math).PI}") String speech) {
+	public void setSpeech(@Value("#{T(Math).sin(T(Math).PI/4)}") String speech) {
 		this.speech = speech;
 	}
 	
