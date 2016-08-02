@@ -1,7 +1,10 @@
 package com.caveofprogramming.spring.test;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
+@Component
 public class RandomText {
 	
 	private static String[] texts = {
