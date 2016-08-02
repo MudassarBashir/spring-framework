@@ -6,8 +6,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<bean id="robot" class="com.caveofprogramming.spring.test.Robot">
-		<property name="id" value="#{77 + 10}"/>
-		<property name="speech" value="#{'random text: ' + randomText.getText()}"/>
+		<property name="id" value="#{randomText.text?.length()}"/>
+		<property name="speech" value="#{'random text: ' + randomText.text}"/>
 	</bean>
 
 	<bean id="randomText" class="com.caveofprogramming.spring.test.RandomText">
