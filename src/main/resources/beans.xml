@@ -9,8 +9,4 @@
     <context:property-placeholder
             location="com/caveofprogramming/spring/props/jdbc.properties"/>
 
-    <bean id="robot" class="com.caveofprogramming.spring.test.Robot">
-        <property name="id" value="${jdbc.user}"/>
-        <property name="speech" value="${jdbc.password}" />
-    </bean>
 </beans>
