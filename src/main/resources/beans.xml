@@ -9,4 +9,5 @@
     <context:property-placeholder
             location="com/caveofprogramming/spring/props/jdbc.properties"/>
 
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" />
 </beans>
