@@ -6,6 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<context:component-scan base-package="com.caveofprogramming.spring.test"/>
+
     <context:property-placeholder
             location="com/caveofprogramming/spring/props/jdbc.properties"/>
 
@@ -13,7 +14,7 @@
 		destroy-method="close"
         p:driverClassName="${jdbc.driver}"
         p:url="${jdbc.url}"
-        p:username="root"
+        p:username="${jdbc.user}"
         p:password="${jdbc.password}"
     />
 </beans>
