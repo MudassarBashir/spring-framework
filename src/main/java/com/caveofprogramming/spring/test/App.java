@@ -1,7 +1,11 @@
 package com.caveofprogramming.spring.test;
 
+import com.caveofprogramming.spring.dao.OffersDAO;
+import com.caveofprogramming.spring.model.Offer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 public class App {
 
@@ -9,9 +13,13 @@ public class App {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		
-		Robot robot = (Robot)context.getBean("robot");
+		OffersDAO offersDao = (OffersDAO) context.getBean("offersDao");
 		
-		robot.speak();
+		List<Offer> offers = offersDao.getOffers();
+
+		for (Offer offer : offers) {
+			System.out.println(offer);
+		}
 		
 		((ClassPathXmlApplicationContext)context).close();
 	}
