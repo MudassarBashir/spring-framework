@@ -26,7 +26,7 @@ public class OffersDAO {
 
     public List<Offer> getOffers() {
 
-        return jdbcTemplate.query("select * from offers", new RowMapper<Offer>() {
+        return jdbcTemplate.query("selec t * from offers", new RowMapper<Offer>() {
 
             public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Offer offer = new Offer();
