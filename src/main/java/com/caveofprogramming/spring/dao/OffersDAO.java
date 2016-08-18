@@ -2,8 +2,9 @@ package com.caveofprogramming.spring.dao;
 
 import com.caveofprogramming.spring.model.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -17,16 +18,18 @@ import java.util.List;
 @Component("offersDao")
 public class OffersDAO {
 
-    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public List<Offer> getOffers() {
 
-        return jdbcTemplate.query("select * from offers", new RowMapper<Offer>() {
+        MapSqlParameterSource params = new MapSqlParameterSource("name", "Sue");
+
+        return jdbcTemplate.query("select * from offers where name = :name", params, new RowMapper<Offer>() {
 
             public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Offer offer = new Offer();
