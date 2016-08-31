@@ -23,6 +23,9 @@ public class App {
             for (Offer offer : offers) {
                 System.out.println(offer);
             }
+
+            Offer offer = offersDao.getOffer(2);
+            System.out.println("Should be Mike: " + offer);
         } catch (CannotGetJdbcConnectionException e) {
             System.out.println("Could not connect to datasource.");
         } catch (DataAccessException e) {
