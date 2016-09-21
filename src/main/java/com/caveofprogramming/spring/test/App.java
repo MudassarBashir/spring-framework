@@ -18,6 +18,7 @@ public class App {
 		OffersDAO offersDao = (OffersDAO) context.getBean("offersDao");
 
         try {
+            offersDao.delete(1);
             List<Offer> offers = offersDao.getOffers();
 
             for (Offer offer : offers) {
