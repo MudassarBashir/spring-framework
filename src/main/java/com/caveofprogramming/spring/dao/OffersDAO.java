@@ -3,9 +3,7 @@ package com.caveofprogramming.spring.dao;
 import com.caveofprogramming.spring.model.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.*;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -83,6 +81,11 @@ public class OffersDAO {
     public boolean delete(int id) {
         MapSqlParameterSource params = new MapSqlParameterSource("id", id);
         return jdbcTemplate.update("delete from offers where id=:id", params) == 1;
+    }
+
+    public int[] create(List<Offer> offers) {
+        SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(offers.toArray());
+        return jdbcTemplate.batchUpdate("insert into offers (name, text, email) values (:name, :text, :email)", params);
     }
 
 }

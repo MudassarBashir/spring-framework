@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class App {
@@ -27,6 +28,19 @@ public class App {
         }
 
         try {
+
+            List<Offer> offersList = new ArrayList<Offer>();
+            offersList.add(new Offer("Larry", "larry@stooges.com", "What's the big idea?"));
+            offersList.add(new Offer("Curly", "curly@stooges.com", "Soitenly!"));
+            offersList.add(new Offer("Moe", "moe@stooges.com", "Why you numb skull!"));
+            offersList.add(new Offer("Shemp", "shemp@stooges.com", "Hey, wait for me!"));
+
+            int[] rvals = offersDao.create(offersList);
+
+            for (int value : rvals) {
+                System.out.println("Updated " + value + " rows.");
+            }
+
             Offer offer1 = new Offer("Moe", "moe@nowhere.com", "Java coding");
             Offer offer2 = new Offer("John", "john@caveofprogramming.com", "Java super coding");
             if (offersDao.create(offer1)) {
