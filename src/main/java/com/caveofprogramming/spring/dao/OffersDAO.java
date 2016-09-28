@@ -73,6 +73,13 @@ public class OffersDAO {
                                     params) == 1;
     }
 
+    public boolean update(Offer offer) {
+
+        BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+        return jdbcTemplate.update("update offers set name=:name, text=:text, email=:email where id=:id",
+                params) == 1;
+    }
+
     public boolean delete(int id) {
         MapSqlParameterSource params = new MapSqlParameterSource("id", id);
         return jdbcTemplate.update("delete from offers where id=:id", params) == 1;

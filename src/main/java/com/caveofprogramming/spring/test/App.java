@@ -17,6 +17,15 @@ public class App {
 		
 		OffersDAO offersDao = (OffersDAO) context.getBean("offersDao");
 
+        Offer offer3 = new Offer(8, "Sam", "sam@nowhere.com", "Let me code man!");
+
+        if (offersDao.update(offer3) == true) {
+            System.out.println("Updated offer object.");
+        }
+        else {
+            System.out.println("Cannot update object.");
+        }
+
         try {
             Offer offer1 = new Offer("Moe", "moe@nowhere.com", "Java coding");
             Offer offer2 = new Offer("John", "john@caveofprogramming.com", "Java super coding");
