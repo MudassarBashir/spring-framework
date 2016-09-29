@@ -85,7 +85,7 @@ public class OffersDAO {
 
     public int[] create(List<Offer> offers) {
         SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(offers.toArray());
-        return jdbcTemplate.batchUpdate("insert into offers (name, text, email) values (:name, :text, :email)", params);
+        return jdbcTemplate.batchUpdate("insert into offers (id, name, text, email) values (:id, :name, :text, :email)", params);
     }
 
 }
