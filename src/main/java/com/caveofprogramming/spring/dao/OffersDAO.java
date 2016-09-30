@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.*;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -83,6 +84,7 @@ public class OffersDAO {
         return jdbcTemplate.update("delete from offers where id=:id", params) == 1;
     }
 
+    @Transactional
     public int[] create(List<Offer> offers) {
         SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(offers.toArray());
         return jdbcTemplate.batchUpdate("insert into offers (id, name, text, email) values (:id, :name, :text, :email)", params);
