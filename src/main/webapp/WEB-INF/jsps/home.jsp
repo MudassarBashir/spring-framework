@@ -16,6 +16,5 @@
     ID: ${row.id}<br/>
     Name: ${row.name}<br/>
 </c:forEach>
-
 </body>
 </html>
