@@ -6,10 +6,15 @@
     <description>Spring Database</description>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:com/caveofprogramming/spring/web/config/dao-context.xml</param-value>
+        <param-value>
+            classpath:com/caveofprogramming/spring/web/config/dao-context.xml
+            classpath:com/caveofprogramming/spring/web/config/service-context.xml
+        </param-value>
     </context-param>
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
     </listener>
     <servlet>
         <servlet-name>offers</servlet-name>

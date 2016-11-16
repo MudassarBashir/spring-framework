@@ -1,12 +1,13 @@
 package com.caveofprogramming.spring.web.controllers;
 
+import com.caveofprogramming.spring.web.dao.Offer;
+import com.caveofprogramming.spring.web.service.OffersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-import java.util.Map;
+import java.util.List;
 
 /**
  * Created by Moe B. on 11/14/2016.
@@ -14,9 +15,13 @@ import java.util.Map;
 @Controller
 public class OffersController {
 
+    @Autowired
+    private OffersService offersService;
+
     @RequestMapping("/")
     public String showHome(Model model) {
-        model.addAttribute("name", "<b>Inspector Gadget</b>");
+        List<Offer> offers = offersService.getCurrent();
+        model.addAttribute("offers", offers);
         return "home";
     }
 }

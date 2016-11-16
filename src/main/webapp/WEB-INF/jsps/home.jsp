@@ -4,17 +4,12 @@
 
 <html>
 <body>
-<h2>Hello Spring World!</h2>
-
-<c:out value="${name}"/><p/>
-
-<sql:query var="rs" dataSource="jdbc/spring">
-    select id, name, email, text from offers
-</sql:query>
-
-<c:forEach var="row" items="${rs.rows}">
-    ID: ${row.id}<br/>
-    Name: ${row.name}<br/>
+<h2>home.jsp</h2>
+<c:forEach var="offer" items="${offers}">
+    ID: ${offer.id}<br/>
+    Name: ${offer.name}<br/>
+    E-mail: ${offer.email}<br/>
+    Text: ${offer.text}<br/>
 </c:forEach>
 </body>
 </html>
