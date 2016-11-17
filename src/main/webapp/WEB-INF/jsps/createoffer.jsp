@@ -11,28 +11,7 @@
 
     <head>
         <title>Create offer</title>
-        <style type="text/css">
-            .formtable {
-                width: 400px;
-                padding: 10px;
-                border: 1px solid blue;
-            }
-            input[type=text] {
-                width: 250px;
-
-            }
-            textarea {
-                width: 250px;
-                height: 300px;
-            }
-            .label {
-                text-align: right;
-                vertical-align: top;
-            }
-            .control {
-                margin-left: 10px;
-            }
-        </style>
+        <link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>

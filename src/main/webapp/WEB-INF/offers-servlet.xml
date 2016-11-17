@@ -19,4 +19,6 @@
                 p:prefix="/WEB-INF/jsps/"
                 p:suffix=".jsp"/>
 
+        <mvc:resources location="/resources/" mapping="/static/**" />
+
 </beans>
