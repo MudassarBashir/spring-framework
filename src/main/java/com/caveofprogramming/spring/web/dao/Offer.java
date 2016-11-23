@@ -1,11 +1,15 @@
 package com.caveofprogramming.spring.web.dao;
 
+import javax.validation.constraints.Size;
+
 /**
  * Created by Moe B. on 11/15/2016.
  */
 public class Offer {
 
     private int id;
+
+    @Size(min=5, max=100)
     private String name;
     private String email;
     private String text;
