@@ -6,11 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <html>
     <head>
         <title>Title</title>
     </head>
     <body>
-        Under construction - Offer created.
+        Offer created. <a href="${pageContext.request.contextPath}/offers"> Click here to view current offers.</a>
     </body>
 </html>

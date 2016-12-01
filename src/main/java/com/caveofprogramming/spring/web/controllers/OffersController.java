@@ -31,6 +31,7 @@ public class OffersController {
 
     @RequestMapping("/offers")
     public String showOffers(Model model) {
+        offersService.throwTestException();
         List<Offer> offers = offersService.getCurrent();
         model.addAttribute("offers", offers);
         return "offers";
@@ -45,14 +46,9 @@ public class OffersController {
     @RequestMapping(value = "/docreate", method = RequestMethod.POST)
     public String doCreate(Model model, @Valid Offer offer, BindingResult result) {
         if (result.hasErrors()) {
-            System.out.println("Form does not validate.");
-            List<ObjectError> errors = result.getAllErrors();
-
-            for (ObjectError error: errors) {
-                System.out.println(error.getDefaultMessage());
-            }
-            return "createoffer";
+             return "createoffer";
         }
+        offersService.create(offer);
         return "offercreated";
     }
 }
