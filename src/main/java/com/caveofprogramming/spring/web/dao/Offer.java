@@ -18,7 +18,7 @@ public class Offer {
 
     @NotNull
     //@Pattern(regexp = ".*\\@.*\\..*", message = "This does not appear to be a valid e-mail address.")
-    @ValidEmail
+    @ValidEmail(min = 6, message = "This email address is not valid.")
     private String email;
 
     @Size(min = 10, max = 255, message = "Name must be between 10 and 255 characters.")

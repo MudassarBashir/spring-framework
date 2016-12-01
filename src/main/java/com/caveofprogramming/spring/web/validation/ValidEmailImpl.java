@@ -1,5 +1,7 @@
 package com.caveofprogramming.spring.web.validation;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -14,11 +16,10 @@ public class ValidEmailImpl implements ConstraintValidator<ValidEmail, String> {
     }
 
     public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
-        if (email.length() >= min) {
-            return true;
-        }
-        else {
+        if (email.length() < min ||
+            !EmailValidator.getInstance().isValid(email)) {
             return false;
         }
+        return true;
     }
 }
