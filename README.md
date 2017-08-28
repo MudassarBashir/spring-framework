@@ -29,4 +29,12 @@ declared in Java.
 02.16 An inner bean is appropriate when it will only be needed by it's
 parent bean since it cannot be referenced outside that scope.
 
+07/05/17 If Intellij IDEA complains that it can't find XML resources on the classpath,
+delete the isMavenModule clause from offers-web-application.iml and restart the IDE and
+rerun the project.
+
+07.23.2017 Application depends on a local MySQL data source which I have configure and must run in order
+for the web application to be able to interact with it's data. Application is deployed as a WAR file locally
+in Tomcat 7. I've defined the data source as a JNDI resource in Tomcat's conf subdirectory.
+
 

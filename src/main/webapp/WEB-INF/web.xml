@@ -15,7 +15,7 @@
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <display-name>springSecurityFilterChain</display-name>
-        <filter-class>com.caveofprogramming.spring.web.filters.DelegatingFilterProxy</filter-class>
+        <filter-class>org.springframework.web.filter.DelegatingFidlterProxy</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
