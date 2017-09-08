@@ -19,6 +19,11 @@
                 p:prefix="/WEB-INF/jsps/"
                 p:suffix=".jsp"/>
 
+        <bean id="messageSource"
+              class="org.springframework.context.support.ResourceBundleMessageSource">
+                <property name="basename" value="com.caveofprogramming.spring.web.messages.messages"></property>
+        </bean>
+
         <mvc:resources location="/resources/" mapping="/static/**" />
 
 </beans>
