@@ -37,4 +37,10 @@ rerun the project.
 for the web application to be able to interact with it's data. Application is deployed as a WAR file locally
 in Tomcat 7. I've defined the data source as a JNDI resource in Tomcat's conf subdirectory.
 
+09.11.2017 After a resources clause was added to the master POM file to allow for packagind of the XML
+bean definition files into the WAR file, and a context.xml file
+was added to get Maven's Tomcat 7 plugin to register a jndi data source, I also had to make
+a Maven run configuration in Intellij IDEA to run this application in an embedded Tomcat 7 server using
+Maven's Tomcat plugin.
+
 
