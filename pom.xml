@@ -13,6 +13,45 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <build>
+        <finalName>offers</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>9090</port>
+                    <update>true</update>
+                    <contextFile>${project.basedir}\src\tomcat7-maven-plugin\resources\context.xml</contextFile>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <!-- Because we have bean definition XML files in non-standard locations, e.g. in our config subpackage, rather
+                than the conventional standard src/main/resources, they don't get included in the generated WAR file unless
+                the resources clause below is declared. This puts those XML files in the root of the generated WAR where they
+                are found on the classpath when running the application via Maven's Tomcat 7 plugin. -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!-- The resource clause below became necessary at video 104, as the message.properties file was not being included
+                in the generated WAR file via Maven. John didn't have this problem because he was using Eclipse to build the project
+                and had a non-Maven project structure therefore his classpath configuration was different and it already included
+                his messages.properties file onto the classpath.-->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/messages*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -91,33 +130,5 @@
             <version>3.1.4.RELEASE</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>offers</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <port>9090</port>
-                    <update>true</update>
-                    <contextFile>${project.basedir}\src\tomcat7-maven-plugin\resources\context.xml</contextFile>
-                </configuration>
-            </plugin>
-        </plugins>
-        <!-- Because we have bean definition XML files in non-standard locations, e.g. in our config subpackage, rather
-            than the conventional standard src/main/resources, they don't get included in the generated WAR file unless
-            the resources clause below is declared. This puts those XML files in the root of the generated WAR where they
-            are found on the classpath when running the application via Maven's Tomcat 7 plugin. -->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
-    </build>
 
 </project>

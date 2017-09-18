@@ -8,7 +8,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 
@@ -28,7 +29,7 @@
                 var confirmpass = $("#confirmpass").val();
 
                 if (password != confirmpass) {
-                    alert("Passwords do not match!")
+                    alert("<fmt:message key='UnmatchedPasswords.user.password' />")
                     return false;
                 }
                 if ((password.length == 0 && confirmpass.length == 0) ||
@@ -46,16 +47,17 @@
 
                 if (password.length > 3 || confirmpass.length > 3) {
                     if (password == confirmpass) {
-                        $("#matchpass").text("Passwords match.");
+                        $("#matchpass").text("<fmt:message key='MatchedPasswords.user.password' />");
                         $("#matchpass").addClass("valid");
                         $("#matchpass").removeClass("error");
                     } else {
-                        $("#matchpass").text("Passwords do not match.");
+                        $("#matchpass").text("<fmt:message key='UnmatchedPasswords.user.password' />");
                         $("#matchpass").addClass("error");
                         $("#matchpass").removeClass("valid");
                     }
                 }
             }
+
 	$(document).ready(onLoad);
         </script>
     </head>
@@ -63,7 +65,7 @@
     <body>
         <h2>Create New Account</h2>
 
-        	<sf:form id="details" method="post" action="${pageContext.request.contextPath}/createaccount" commandName="user">
+        <sf:form id="details" method="post" action="${pageContext.request.contextPath}/createaccount" commandName="user">
 
             <table class="formtable">
                 <tr>
