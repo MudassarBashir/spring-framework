@@ -23,7 +23,9 @@
                 <configuration>
                     <port>9090</port>
                     <update>true</update>
-                    <contextFile>${project.basedir}\src\tomcat7-maven-plugin\resources\context.xml</contextFile>
+                    <!-- This path had to be adjusted as this plugin wasn't connection to the database when tested by
+                     trying to create a new user account. I think it was using it's own context.xml instead of mine. -->
+                    <contextFile>./src/main/webapp/META-INF/context.xml</contextFile>
                 </configuration>
             </plugin>
         </plugins>
