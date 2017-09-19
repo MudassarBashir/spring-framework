@@ -5,6 +5,8 @@ import com.caveofprogramming.spring.web.dao.UsersDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Moe B. on 11/16/2016.
  */
@@ -20,5 +22,9 @@ public class UsersService {
 
     public boolean exists(String username) {
         return usersDao.exists(username);
+    }
+
+    public List<User> getAllUsers() {
+        return usersDao.getAllUsers();
     }
 }
