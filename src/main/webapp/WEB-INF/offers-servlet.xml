@@ -14,10 +14,19 @@
 
         <!-- Dispatcher servlet will consult this view resolver to map controller returned
             strings into appropriate view names. -->
-        <bean   id="jspViewResolver"
-                class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-                p:prefix="/WEB-INF/jsps/"
-                p:suffix=".jsp"/>
+        <bean id="tilesViewResolver"
+              class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
+        </bean>
+
+
+        <bean id="tilesConfigurer"
+              class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+                <property name="definitions">
+                        <list>
+                                <value>/WEB-INF/layouts/default.xml</value>
+                        </list>
+                </property>
+        </bean>
 
         <bean id="messageSource"
               class="org.springframework.context.support.ResourceBundleMessageSource">
