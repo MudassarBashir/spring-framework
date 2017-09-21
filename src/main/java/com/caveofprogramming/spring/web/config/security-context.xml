@@ -8,24 +8,18 @@
     <!-- Authorized Users -->
         <security:authentication-manager>
             <security:authentication-provider>
-                <security:user-service>
-                    <security:user name="moeb" authorities="admin" password="letsmein" />
-                    <security:user name="Zog" authorities="admin" password="iamzog" />
-                </security:user-service>
-            </security:authentication-provider>
-            <security:authentication-provider>
                 <security:jdbc-user-service
                         id="jdbcUserService"
                         data-source-ref="dataSource"
                         authorities-by-username-query='select * from authorities where binary username = ?'
                         users-by-username-query='select * from users where binary username = ?' />
+                <security:password-encoder ref="passwordEncoder"></security:password-encoder>
             </security:authentication-provider>
         </security:authentication-manager>
 
     <!-- Specifying which parts of the web application are secured -->
     <security:http use-expressions="true">
-        <security:intercept-url pattern="/admin" access="permitAll" />
-        <!--<security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />-->
+        <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
         <security:intercept-url pattern="/createoffer" access="isAuthenticated()" />
         <security:intercept-url pattern="/docreate" access="isAuthenticated()" />
         <security:intercept-url pattern="/offercreated" access="isAuthenticated()" />
@@ -47,5 +41,9 @@
     </security:http>
 
     <security:global-method-security secured-annotations="enabled" />
+
+    <bean id="passwordEncoder"
+          class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+    </bean>
 
 </beans>
