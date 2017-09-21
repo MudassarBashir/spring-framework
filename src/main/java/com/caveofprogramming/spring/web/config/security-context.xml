@@ -15,6 +15,7 @@
             </security:authentication-provider>
             <security:authentication-provider>
                 <security:jdbc-user-service
+                        id="jdbcUserService"
                         data-source-ref="dataSource"
                         authorities-by-username-query='select * from authorities where binary username = ?'
                         users-by-username-query='select * from users where binary username = ?' />
@@ -41,6 +42,8 @@
         <security:form-login login-page="/login" authentication-failure-url="/login?error=true"/>
         <security:logout logout-success-url="/loggedout" />
         <security:access-denied-handler error-page="/denied" />
+        <security:remember-me key="offersAppKey"
+                              user-service-ref="jdbcUserService" />
     </security:http>
 
     <security:global-method-security secured-annotations="enabled" />
