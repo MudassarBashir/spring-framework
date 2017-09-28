@@ -1,7 +1,7 @@
 package com.caveofprogramming.spring.web.test.tests;
 
-import com.caveofprogramming.spring.web.dao.User;
-import com.caveofprogramming.spring.web.dao.UsersDao;
+import com.caveofprogramming.spring.web.dao.Offer;
+import com.caveofprogramming.spring.web.dao.OffersDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +15,8 @@ import javax.sql.DataSource;
 
 import java.util.List;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
@@ -24,10 +24,10 @@ import static org.junit.Assert.assertTrue;
         "classpath:com/caveofprogramming/spring/web/config/security-context.xml",
         "classpath:com/caveofprogramming/spring/web/test/config/datasource.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
-public class UserDaoTests {
+public class OffersDaoTests {
 
     @Autowired
-    private UsersDao usersDao;
+    private OffersDao offersDao;
 
     @Autowired
     private DataSource dataSource;
@@ -36,23 +36,39 @@ public class UserDaoTests {
     public void init() {
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 
+        jdbc.execute("delete from offers");
         jdbc.execute("delete from users");
         jdbc.execute("delete from authorities");
     }
 
     @Test
     public void testCreateUser() {
-        User user = new User("chingiskhan", "greatkhan", true, "ROLE_USER", "john@caveofprogramming.com");
 
-        assertTrue("User creation should return true", usersDao.create(user));
+        Offer offer = new Offer("johnwpurcell", "john@caveofprogramming.com", "This is a test offer.");
 
-        List<User> users = usersDao.getAllUsers();
+        assertTrue("Offer creation should return true", offersDao.create(offer));
 
-        assertEquals("Number of users should be 1.", 1, users.size());
+        List<Offer> offers = offersDao.getOffers();
 
-        assertTrue("User should exist.", usersDao.exists(user.getUsername()));
+        assertEquals("Should be one offer in database.", 1, offers.size());
 
-        assertEquals("Created user should be identical to retrieved user", user, users.get(0));
+        assertEquals("Retrieved offer should match created offer.", offer, offers.get(0));
+
+        // Get the offer with ID filled in.
+        offer = offers.get(0);
+
+        offer.setText("Updated offer text.");
+        assertTrue("Offer update should return true", offersDao.update(offer));
+
+        Offer updated = offersDao.getOffer(offer.getId());
+
+        assertEquals("Updated offer should match retrieved updated offer", offer, updated);
+
+        offersDao.delete(offer.getId());
+
+        List<Offer> empty = offersDao.getOffers();
+
+        assertEquals("Offers lists should be empty.", 0, empty.size());
     }
 
 }
