@@ -2,6 +2,8 @@ package com.caveofprogramming.spring.web.test.tests;
 
 import com.caveofprogramming.spring.web.dao.Offer;
 import com.caveofprogramming.spring.web.dao.OffersDao;
+import com.caveofprogramming.spring.web.dao.User;
+import com.caveofprogramming.spring.web.dao.UsersDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +32,9 @@ public class OffersDaoTests {
     private OffersDao offersDao;
 
     @Autowired
+    private UsersDao usersDao;
+
+    @Autowired
     private DataSource dataSource;
 
     @Before
@@ -38,13 +43,17 @@ public class OffersDaoTests {
 
         jdbc.execute("delete from offers");
         jdbc.execute("delete from users");
-        jdbc.execute("delete from authorities");
     }
 
     @Test
     public void testCreateUser() {
 
-        Offer offer = new Offer("johnwpurcell", "john@caveofprogramming.com", "This is a test offer.");
+        User user = new User("johnwpurcell", "John Purcell", "hellothere",
+                "john@caveofprogramming.com", true, "user");
+
+        assertTrue("User creation should return true", usersDao.create(user));
+
+        Offer offer = new Offer(user, "This is a test offer.");
 
         assertTrue("Offer creation should return true", offersDao.create(offer));
 
@@ -52,7 +61,8 @@ public class OffersDaoTests {
 
         assertEquals("Should be one offer in database.", 1, offers.size());
 
-        assertEquals("Retrieved offer should match created offer.", offer, offers.get(0));
+        assertEquals("Retrieved offer should match created offer.", offer,
+                offers.get(0));
 
         // Get the offer with ID filled in.
         offer = offers.get(0);
@@ -62,7 +72,8 @@ public class OffersDaoTests {
 
         Offer updated = offersDao.getOffer(offer.getId());
 
-        assertEquals("Updated offer should match retrieved updated offer", offer, updated);
+        assertEquals("Updated offer should match retrieved updated offer",
+                offer, updated);
 
         offersDao.delete(offer.getId());
 
