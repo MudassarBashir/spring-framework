@@ -17,7 +17,7 @@ public class Offer {
     private User user;
 
     public Offer() {
-
+        this.user = new User();
     }
 
     public Offer(User user, String text) {
