@@ -25,4 +25,12 @@ public class OffersService {
     public void create(Offer offer) {
         offersDao.create(offer);
     }
+
+    public boolean hasOffer(String name) {
+        if (null == name)
+            return false;
+
+        List<Offer> offers = offersDao.getOffers(name);
+        return !offers.isEmpty();
+    }
 }
