@@ -30,7 +30,7 @@
 
         <bean id="messageSource"
               class="org.springframework.context.support.ResourceBundleMessageSource">
-                <property name="basename" value="com.caveofprogramming.spring.web.messages.messages"></property>
+                <property name="basename" value="com.caveofprogramming.spring.web.messages.messages"/>
         </bean>
 
         <mvc:resources location="/resources/" mapping="/static/**" />
