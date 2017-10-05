@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
  * Created by Moe B. on 11/15/2016.
  */
 public class Offer {
+
     private int id;
 
     @Size(min=5, max=255)

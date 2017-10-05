@@ -33,4 +33,24 @@ public class OffersService {
         List<Offer> offers = offersDao.getOffers(name);
         return !offers.isEmpty();
     }
+
+    public Offer getOffer(String username) {
+
+        List<Offer> offers = offersDao.getOffers(username);
+
+        if (null == username || offers.isEmpty())
+            return null;
+
+        return offers.get(0);
+    }
+
+    public void saveOrUpdate(Offer offer) {
+
+        if (offer.getId() != 0) {
+            offersDao.update(offer);
+        }
+        else {
+            offersDao.create(offer);
+        }
+    }
 }
