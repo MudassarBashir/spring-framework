@@ -4,6 +4,22 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
 
+<script type="text/javascript">
+    <!--
+    function onDeleteClick(event) {
+
+        var doDelete = confirm("Are you sure you want to delete this offer?");
+
+        if(doDelete == false) {
+            event.preventDefault();
+        }
+    }
+    function onReady() {
+        $("#delete").click(onDeleteClick);
+    }
+    $(document).ready(onReady);
+    //-->
+</script>
 
 <sf:form method="post" action="${pageContext.request.contextPath}/docreate" commandName="offer">
 
@@ -22,7 +38,7 @@
             <td>
                 <input class="control" value="Save" type="submit"/>
                 <c:if test="${offer.id != 0}">
-                    <input class="control" name="delete" value="Delete" type="submit"/>
+                    <input class="delete control" name="delete" value="Delete" id="delete" type="submit"/>
                 </c:if>
             </td>
         </tr>
