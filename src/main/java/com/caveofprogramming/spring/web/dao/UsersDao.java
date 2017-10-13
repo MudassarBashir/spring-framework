@@ -1,5 +1,7 @@
 package com.caveofprogramming.spring.web.dao;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -13,6 +15,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Component("usersDao")
+@Transactional
 public class UsersDao {
 
     private NamedParameterJdbcTemplate jdbc;
@@ -21,11 +24,17 @@ public class UsersDao {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
+    SessionFactory sessionFactory;
+
+    @Autowired
     public void setDataSource(DataSource jdbc) {
         this.jdbc = new NamedParameterJdbcTemplate(jdbc);
     }
 
-    @Transactional
+    Session session() {
+        return sessionFactory.getCurrentSession();
+    }
+
     public boolean create(User user) {
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -45,8 +54,9 @@ public class UsersDao {
                 new MapSqlParameterSource("username", username), Integer.class) > 0;
     }
 
+    @SuppressWarnings("unchecked") // Otherwise we get an unchecked cast warning because we are casting a List<Object> to List<User>
     public List<User> getAllUsers() {
-        return jdbc.query("select * from users", BeanPropertyRowMapper.newInstance(User.class));
+        return session().createQuery("from User").list();
     }
 
 
