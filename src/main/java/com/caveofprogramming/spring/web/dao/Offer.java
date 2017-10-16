@@ -1,8 +1,5 @@
 package com.caveofprogramming.spring.web.dao;
 
-import com.caveofprogramming.spring.web.validation.ValidEmail;
-
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -12,8 +9,7 @@ public class Offer {
 
     private int id;
 
-    @Size(min=5, max=255)
-    private String text;
+    @Size(min = 5, max = 255) private String text;
 
     private User user;
 
@@ -60,8 +56,7 @@ public class Offer {
         return user.getUsername();
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((text == null) ? 0 : text.hashCode());
@@ -69,8 +64,7 @@ public class Offer {
         return result;
     }
 
-    @Override
-    public boolean equals(Object obj) {
+    @Override public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
@@ -91,13 +85,8 @@ public class Offer {
         return true;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return "Offer [id=" + id + ", text=" + text + ", user=" + user + "]";
     }
-
-
-
-
 
 }
