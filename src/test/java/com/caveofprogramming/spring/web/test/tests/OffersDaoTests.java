@@ -1,5 +1,8 @@
 package com.caveofprogramming.spring.web.test.tests;
 
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
 import com.caveofprogramming.spring.web.dao.Offer;
 import com.caveofprogramming.spring.web.dao.OffersDao;
 import com.caveofprogramming.spring.web.dao.User;
@@ -17,7 +20,6 @@ import javax.sql.DataSource;
 
 import java.util.List;
 
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 @ActiveProfiles("dev")
@@ -51,7 +53,7 @@ public class OffersDaoTests {
         User user = new User("johnwpurcell", "John Purcell", "hellothere",
                 "john@caveofprogramming.com", true, "user");
 
-        assertTrue("User creation should return true", usersDao.create(user));
+        usersDao.create(user);
 
         Offer offer = new Offer(user, "This is a test offer.");
 
