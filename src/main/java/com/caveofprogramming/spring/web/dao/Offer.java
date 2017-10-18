@@ -1,16 +1,24 @@
 package com.caveofprogramming.spring.web.dao;
 
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 /**
  * Created by Moe B. on 11/15/2016.
  */
+@Entity
+@Table(name="offers")
 public class Offer {
 
+    @Id
+    @GeneratedValue
     private int id;
 
-    @Size(min = 5, max = 255) private String text;
+    @Size(min=5, max=255, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+    private String text;
 
+    @ManyToOne
+    @JoinColumn(name="username")
     private User user;
 
     public Offer() {

@@ -1,5 +1,7 @@
 package com.caveofprogramming.spring.web.dao;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.*;
 import org.springframework.stereotype.Component;
@@ -9,10 +11,18 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.util.List;
 
+@Transactional
 @Repository
 @Component("offersDao") public class OffersDao {
 
     private NamedParameterJdbcTemplate jdbc;
+
+    @Autowired
+    SessionFactory sessionFactory;
+
+    Session session() {
+        return sessionFactory.getCurrentSession();
+    }
 
     @Autowired public void setDataSource(DataSource jdbc) {
         this.jdbc = new NamedParameterJdbcTemplate(jdbc);
@@ -38,14 +48,13 @@ import java.util.List;
         return jdbc.update("update offers set text=:text where id=:id", params) == 1;
     }
 
-    public boolean create(Offer offer) {
+    public void create(Offer offer) {
 
-        BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+        session().save(offer);
 
-        return jdbc.update("insert into offers (username, text) values (:username, :text)", params) == 1;
     }
 
-    @Transactional public int[] create(List<Offer> offers) {
+    public int[] create(List<Offer> offers) {
 
         SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(offers.toArray());
 
