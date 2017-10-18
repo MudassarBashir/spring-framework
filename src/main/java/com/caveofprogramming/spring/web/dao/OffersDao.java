@@ -1,7 +1,9 @@
 package com.caveofprogramming.spring.web.dao;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.*;
 import org.springframework.stereotype.Component;
@@ -30,15 +32,17 @@ import java.util.List;
 
     public List<Offer> getOffers() {
 
-        return jdbc.query("select * from offers, users where offers.username=users.username and users.enabled=true",
-                new OfferRowMapper());
+        Criteria criteria = session().createCriteria(Offer.class);
+        criteria.createAlias("user", "u").add(Restrictions.eq("u.enabled", true));
+        return criteria.list();
+
     }
 
     public List<Offer> getOffers(String username) {
 
         return jdbc
-                .query("select * from offers, users " + "where offers.username=users.username and users.enabled=true "
-                                + "and offers.username=:username", new MapSqlParameterSource("username", username),
+                .query("select * from offers, users " + "where offers.username=users.username"
+                                + " and offers.username=:username", new MapSqlParameterSource("username", username),
                         new OfferRowMapper());
     }
 

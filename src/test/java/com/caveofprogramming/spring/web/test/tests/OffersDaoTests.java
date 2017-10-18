@@ -63,7 +63,7 @@ public class OffersDaoTests {
     }
 
     @Test
-    public void testCreate() {
+    public void testCreateRetrieve() {
         usersDao.create(user1);
         usersDao.create(user2);
         usersDao.create(user3);
