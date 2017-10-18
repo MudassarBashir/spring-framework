@@ -12,11 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.sql.DataSource;
-
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
@@ -68,23 +66,14 @@ public class UserDaoTests {
         assertEquals("Should be four retrieved users.", 4, users2.size());
     }
 
-    // TODO - Reimplement this
     @Test
-    public void testUsers() {
-        User user = new User("johnwpurcell", "John Purcell", "hellothere",
-                "john@caveofprogramming.com", true, "user");
+    public void testExists() {
+        usersDao.create(user1);
+        usersDao.create(user2);
+        usersDao.create(user3);
 
-        usersDao.create(user);
-
-        List<User> users = usersDao.getAllUsers();
-
-        assertEquals("Number of users should be 1.", 1, users.size());
-
-        assertTrue("User should exist.", usersDao.exists(user.getUsername()));
-
-        assertEquals("Created user should be identical to retrieved user",
-                user, users.get(0));
-
+        assertTrue("User should exist.", usersDao.exists(user2.getUsername()));
+        assertFalse("User should not exist.", usersDao.exists("Some user that shouldn't exist!"));
     }
 
 }
