@@ -5,7 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.*;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +32,7 @@ import java.util.List;
         this.jdbc = new NamedParameterJdbcTemplate(jdbc);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Offer> getOffers() {
 
         Criteria criteria = session().createCriteria(Offer.class);
@@ -38,12 +41,14 @@ import java.util.List;
 
     }
 
+    @SuppressWarnings("unchecked")
     public List<Offer> getOffers(String username) {
 
-        return jdbc
-                .query("select * from offers, users " + "where offers.username=users.username"
-                                + " and offers.username=:username", new MapSqlParameterSource("username", username),
-                        new OfferRowMapper());
+        Criteria criteria = session().createCriteria(Offer.class);
+        criteria.createAlias("user", "u");
+        criteria.add(Restrictions.eq("u.enabled", true));
+        criteria.add(Restrictions.eq("u.username", username));
+        return criteria.list();
     }
 
     public boolean update(Offer offer) {
@@ -56,13 +61,6 @@ import java.util.List;
 
         session().save(offer);
 
-    }
-
-    public int[] create(List<Offer> offers) {
-
-        SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(offers.toArray());
-
-        return jdbc.batchUpdate("insert into offers (username, text) values (:username, :text)", params);
     }
 
     public boolean delete(int id) {
