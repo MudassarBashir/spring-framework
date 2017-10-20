@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -51,15 +50,9 @@ import java.util.List;
         return criteria.list();
     }
 
-    public boolean update(Offer offer) {
-        BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+    public void saveOrUpdate(Offer offer) {
 
-        return jdbc.update("update offers set text=:text where id=:id", params) == 1;
-    }
-
-    public void create(Offer offer) {
-
-        session().save(offer);
+        session().saveOrUpdate(offer);
 
     }
 
