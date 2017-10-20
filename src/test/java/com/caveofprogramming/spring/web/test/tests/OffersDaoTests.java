@@ -16,7 +16,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.sql.DataSource;
 import java.util.List;
 
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
@@ -59,6 +61,28 @@ public class OffersDaoTests {
 
         jdbc.execute("delete from offers");
         jdbc.execute("delete from users");
+    }
+
+    @Test
+    public void testDelete() {
+        usersDao.create(user1);
+        usersDao.create(user2);
+        usersDao.create(user3);
+        usersDao.create(user4);
+        offersDao.saveOrUpdate(offer2);
+        offersDao.saveOrUpdate(offer3);
+        offersDao.saveOrUpdate(offer4);
+        offersDao.saveOrUpdate(offer5);
+        offersDao.saveOrUpdate(offer6);
+        offersDao.saveOrUpdate(offer7);
+
+        Offer retrieved1 = offersDao.getOffer(offer2.getId());
+        assertNotNull("Offer with ID " + retrieved1.getId() + " should not be null (deleted, actual)", retrieved1);
+
+        offersDao.delete(offer2.getId());
+
+        Offer retrieved2 = offersDao.getOffer(offer2.getId());
+        assertNull("Offer with ID " + retrieved1.getId() + " should be null (deleted, actual)", retrieved2);
     }
 
     @Test

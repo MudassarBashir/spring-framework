@@ -1,6 +1,7 @@
 package com.caveofprogramming.spring.web.dao;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -57,9 +58,10 @@ import java.util.List;
     }
 
     public boolean delete(int id) {
-        MapSqlParameterSource params = new MapSqlParameterSource("id", id);
 
-        return jdbc.update("delete from offers where id=:id", params) == 1;
+        Query query = session().createQuery("delete from Offer where id=:id");
+        query.setLong("id", id);
+        return query.executeUpdate() == 1;
     }
 
     public Offer getOffer(int id) {
