@@ -27,7 +27,7 @@
                 <value>/WEB-INF/layouts/default.xml</value>
             </list>
         </property>
-    </bean> 
+    </bean>
 
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -42,5 +42,20 @@
                                       id="message">
         </webflow-config:flow-location>
     </webflow-config:flow-registry>
+
+    <webflow-config:flow-executor id="flowExecutor"
+                                  flow-registry="flowRegistry">
+    </webflow-config:flow-executor>
+
+    <bean id="flowHandlerAdaptor"
+          class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+        <property name="flowExecutor" ref="flowExecutor"/>
+    </bean>
+
+    <bean id="flowHandlerMapping"
+          class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+        <property name="flowRegistry" ref="flowRegistry"/>
+        <property name="order" value="0"/>
+    </bean>
 
 </beans>
