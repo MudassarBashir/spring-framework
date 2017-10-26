@@ -44,6 +44,7 @@ public class UserDaoTests {
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 
         jdbc.execute("delete from offers");
+        jdbc.execute("delete from messages");
         jdbc.execute("delete from users");
     }
 
@@ -73,7 +74,6 @@ public class UserDaoTests {
         usersDao.create(user3);
 
         assertTrue("User should exist.", usersDao.exists(user2.getUsername()));
-        assertFalse("User should not exist.", usersDao.exists("Some user that shouldn't exist!"));
+        assertFalse("User should not exist.", usersDao.exists("xkjhsfjlsjf"));
     }
-
 }
