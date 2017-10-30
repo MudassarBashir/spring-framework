@@ -1,5 +1,7 @@
 package com.caveofprogramming.spring.web.service;
 
+import com.caveofprogramming.spring.web.dao.Message;
+import com.caveofprogramming.spring.web.dao.MessagesDao;
 import com.caveofprogramming.spring.web.dao.User;
 import com.caveofprogramming.spring.web.dao.UsersDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class UsersService {
     @Autowired
     private UsersDao usersDao;
 
+    @Autowired
+    private MessagesDao messagesDao;
+
     public void create(User user) {
         usersDao.create(user);
     }
@@ -28,5 +33,9 @@ public class UsersService {
     @Secured("ROLE_ADMIN")
     public List<User> getAllUsers() {
         return usersDao.getAllUsers();
+    }
+
+    public void sendMessage(Message message) {
+        messagesDao.saveOrUpdate(message);
     }
 }

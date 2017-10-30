@@ -133,4 +133,8 @@ public class Message implements Serializable {
         return true;
     }
 
+    @Override public String toString() {
+        return "Message{" + "id=" + id + ", subject='" + subject + '\'' + ", content='" + content + '\'' + ", name='"
+                + name + '\'' + ", email='" + email + '\'' + ", username='" + username + '\'' + '}';
+    }
 }
