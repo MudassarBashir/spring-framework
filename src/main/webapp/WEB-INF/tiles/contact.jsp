@@ -13,7 +13,8 @@
     <!-- This key enables Webflow to know where we are in the Webflow at the moment, the 'value' variable will
     be set by Spring Webflow. -->
     <input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
-    <!-- The event id determines what happens when we submit the form. -->
+    <!-- The event id determines what happens when we submit the form. It is a way of specifying what happens when
+    the form is submitted. It will tell our Webflow to transition from out first view state to our second view state.-->
     <input type="hidden" name="_eventId" value="send"/>
 
     <table class="formtable">
