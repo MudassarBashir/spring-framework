@@ -76,7 +76,9 @@
     </bean>
 
     <webflow-config:flow-builder-services
-            id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator" />
+            id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator"
+            validator="validator"
+    />
 
     <!--
     Marking tiles as our view creator for our web flows.
@@ -84,6 +86,10 @@
     <bean id="mvcViewFactoryCreator"
           class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
         <property name="viewResolvers" ref="tilesViewResolver"/>
+    </bean>
+
+    <bean id="validator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
     </bean>
 
 </beans>
