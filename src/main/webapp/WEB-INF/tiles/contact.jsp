@@ -17,8 +17,6 @@
     the form is submitted. It will tell our Webflow to transition from out first view state to our second view state.-->
     <input type="hidden" name="_eventId" value="send"/>
 
-    <input type="hidden" name="username" value="kublaikhan"/>
-
     <table class="formtable">
         <tr>
             <td class="label">Your name:</td>
