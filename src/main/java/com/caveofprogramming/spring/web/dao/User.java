@@ -9,13 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * Created by Moe B. on 9/6/2017.
  */
 @Entity
 @Table(name="users")
-public class User {
+public class User implements Serializable {
 
     @NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
     @Size(min=8, max=15, groups={PersistenceValidationGroup.class, FormValidationGroup.class})

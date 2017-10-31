@@ -36,9 +36,7 @@ public class UsersDao {
 
     public boolean exists(String username) {
 
-        Criteria criteria = session().createCriteria(User.class);
-        criteria.add(Restrictions.idEq(username));
-        return (User)criteria.uniqueResult() != null;
+        return getUser(username) != null;
 
     }
 
@@ -47,6 +45,10 @@ public class UsersDao {
         return session().createQuery("from User").list();
     }
 
-
+    public User getUser(String username) {
+        Criteria criteria = session().createCriteria(User.class);
+        criteria.add(Restrictions.idEq(username));
+        return (User)criteria.uniqueResult();
+    }
 
 }
