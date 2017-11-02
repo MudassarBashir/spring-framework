@@ -67,6 +67,12 @@ div.header {
 	background-color: gray;
 }
 
+div.toolbar {
+	position: relative;
+	padding-left: 40px;
+	top: 10px;
+}
+
 a.login {
 	position: absolute;
 	top: 10px;
