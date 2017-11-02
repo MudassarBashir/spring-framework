@@ -4,20 +4,15 @@
 <%@ page isELIgnored="false" %>
 
 <table class="offers">
-    <tr>
-        <td>Name</td>
-        <td>Email</td>
-        <td>Offer</td>
-    </tr>
 
     <c:forEach var="offer" items="${offers}">
         <tr>
 
-            <td><c:out value="${offer.user.name}"></c:out></td>
+            <td class="name"><c:out value="${offer.user.name}"></c:out></td>
 
-            <td><c:out value="${offer.user.email}"></c:out></td>
+            <td class="contact"><c:out value="${offer.user.email}"></c:out></td>
 
-            <td><c:out value="${offer.text}"></c:out></td>
+            <td class="text"><c:out value="${offer.text}"></c:out></td>
 
         </tr>
     </c:forEach>

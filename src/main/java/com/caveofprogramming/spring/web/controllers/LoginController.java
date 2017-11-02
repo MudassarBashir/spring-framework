@@ -1,6 +1,7 @@
 package com.caveofprogramming.spring.web.controllers;
 
 import com.caveofprogramming.spring.web.dao.FormValidationGroup;
+import com.caveofprogramming.spring.web.dao.Message;
 import com.caveofprogramming.spring.web.dao.User;
 import com.caveofprogramming.spring.web.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Moe B. on 9/6/2017.
@@ -21,29 +27,35 @@ import java.util.List;
 
     private UsersService usersService;
 
-    @Autowired public void setUsersService(UsersService usersService) {
+    @Autowired
+    public void setUsersService(UsersService usersService) {
         this.usersService = usersService;
     }
 
-    @RequestMapping("/login") public String showLogin() {
+    @RequestMapping("/login")
+    public String showLogin() {
         return "login";
     }
 
-    @RequestMapping("/denied") public String showDenied() {
+    @RequestMapping("/denied")
+    public String showDenied() {
         return "denied";
     }
 
-    @RequestMapping("/loggedout") public String showLoggedOut() {
+    @RequestMapping("/loggedout")
+    public String showLoggedOut() {
         return "loggedout";
     }
 
-    @RequestMapping("/newaccount") public String showNewAccount(Model model) {
+    @RequestMapping("/newaccount")
+    public String showNewAccount(Model model) {
 
         model.addAttribute("user", new User());
         return "newaccount";
     }
 
-    @RequestMapping(value = "/createaccount", method = RequestMethod.POST) public String createAccount(
+    @RequestMapping(value = "/createaccount", method = RequestMethod.POST)
+    public String createAccount(
             @Validated(FormValidationGroup.class) User user, BindingResult result) {
 
         if (result.hasErrors()) {
@@ -68,10 +80,32 @@ import java.util.List;
         return "accountcreated";
     }
 
-    @RequestMapping("/admin") public String showAdmin(Model model) {
+    @RequestMapping("/admin")
+    public String showAdmin(Model model) {
 
         List<User> users = usersService.getAllUsers();
         model.addAttribute("users", users);
         return "admin";
+    }
+
+    @RequestMapping(value="/getmessages", method=RequestMethod.GET, produces="application/json")
+    @ResponseBody
+    public Map<String, Object> getMessages(Principal principal) {
+
+        List<Message> messages = null;
+
+        if(principal == null) {
+            messages = new ArrayList<Message>();
+        }
+        else {
+            String username = principal.getName();
+            messages = usersService.getMessages(username);
+        }
+
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("messages", messages);
+        data.put("number", messages.size());
+
+        return data;
     }
 }
