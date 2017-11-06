@@ -42,6 +42,11 @@ import java.util.Map;
         return "denied";
     }
 
+    @RequestMapping("/messages")
+    public String showMessages() {
+        return "messages";
+    }
+
     @RequestMapping("/loggedout")
     public String showLoggedOut() {
         return "loggedout";
