@@ -6,6 +6,8 @@ import com.caveofprogramming.spring.web.dao.User;
 import com.caveofprogramming.spring.web.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +29,9 @@ import java.util.Map;
 @Controller public class LoginController {
 
     private UsersService usersService;
+
+    @Autowired
+    private MailSender mailSender;
 
     @Autowired
     public void setUsersService(UsersService usersService) {
@@ -120,12 +125,24 @@ import java.util.Map;
     public Map<String, Object> sendMessage(Principal principal, @RequestBody Map<String, Object> data) {
 
 
-        String text = (String) data.get("text");
-        String name = (String) data.get("name");
-        String email = (String) data.get("email");
-        Integer target = (Integer) data.get("target");
+        String text = (String)data.get("text");
+        String name = (String)data.get("name");
+        String email = (String)data.get("email");
+        Integer target = (Integer)data.get("target");
 
-        System.out.println(name + ", " + email + ", " + text);
+
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setFrom("sender@somewherenowhere.io");
+        mail.setTo("reciever@somewherenowhere.io");
+        mail.setSubject("Re: " + name + ", your message");
+        mail.setText(text);
+
+        try {
+            mailSender.send(mail);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Can't send message");
+        }
 
         Map<String, Object> rval = new HashMap<String, Object>();
         rval.put("success", true);
