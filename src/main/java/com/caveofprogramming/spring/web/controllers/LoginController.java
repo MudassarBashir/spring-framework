@@ -120,14 +120,16 @@ import java.util.Map;
     public Map<String, Object> sendMessage(Principal principal, @RequestBody Map<String, Object> data) {
 
 
-        String text = (String)data.get("text");
-        String name = (String)data.get("name");
-        String email = (String)data.get("email");
+        String text = (String) data.get("text");
+        String name = (String) data.get("name");
+        String email = (String) data.get("email");
+        Integer target = (Integer) data.get("target");
 
         System.out.println(name + ", " + email + ", " + text);
 
         Map<String, Object> rval = new HashMap<String, Object>();
         rval.put("success", true);
+        rval.put("target", target);
 
         return rval;
     }
